@@ -1,12 +1,7 @@
 var React = require('react');
+var Routes = require('./routes');
+var ReactRouter = require('react-router');
 
-var App = React.createClass({
-    render: function () {
-        return <div>
-            Hi I'm the app
-        </div>
-    }
+ReactRouter.run(Routes, function (Routes) {
+    React.render(<Routes />, document.querySelector('.container'));
 });
-
-var element = React.createElement(App, null);
-React.render(element, document.querySelector('.container'));

@@ -5,13 +5,16 @@
     [ring.middleware.file :refer [wrap-file]]
     [ring.middleware.params :refer [wrap-params]]
     [ring.middleware.json :refer [wrap-json-response]]
-    [ring.util.response :refer [file-response redirect]]
+    [ring.util.response :refer [response file-response redirect]]
+    [weekly.repository :refer [stub-data]]
     ))
 
 (def user-state (atom {}))
 
 (defroutes app-routes
            (GET "/" [] (file-response "index.html" {:root "resources"}))
+           (context "/api/:week-id" [week-id]
+             (GET "/" [week-id] (response (stub-data week-id))))
            (route/not-found "<h1>Page not found</h1>"))
 
 (defn logging-middleware [handler]

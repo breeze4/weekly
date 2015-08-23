@@ -8,6 +8,7 @@ var notifier = require('node-notifier');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
+var path = require('path');
 
 var notify = function (error) {
     var message = 'In: ';
@@ -32,13 +33,14 @@ var notify = function (error) {
 };
 
 var bundler = watchify(browserify({
-    entries: ['./resources/jsx/app.jsx'],
+    entries: [path.join(__dirname, 'resources', 'jsx', 'app.jsx')],
     transform: [reactify],
     extensions: ['.jsx'],
     debug: true,
     cache: {},
     packageCache: {},
-    fullPaths: true
+    fullPaths: true,
+    verbose: true
 }));
 
 function bundle() {
@@ -46,16 +48,17 @@ function bundle() {
         .bundle()
         .on('error', notify)
         .pipe(source('main.js'))
-        .pipe(gulp.dest('./resources/'))
+        .pipe(gulp.dest(path.join(__dirname, 'resources')))
 }
 bundler.on('update', bundle);
+bundler.on('log', gutil.log); // output build logs to terminal
 
 gulp.task('build', function () {
     bundle()
 });
 
 gulp.task('sass', function () {
-    gulp.src('./resources/sass/**/*.scss')
+    gulp.src(path.join(__dirname, 'resources', 'sass', '**', '*.scss'))
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('style.css'))
         .pipe(gulp.dest('./resources/'));
@@ -64,5 +67,5 @@ gulp.task('sass', function () {
 gulp.task('default', ['build', 'sass', 'watch']);
 
 gulp.task('watch', function () {
-    gulp.watch('./resources/sass/**/*.scss', ['sass']);
+    gulp.watch(path.join(__dirname, 'resources', 'sass', '**', '*.scss'), ['sass']);
 });
