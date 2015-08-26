@@ -1,6 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Router = require('react-router');
+var Link = Router.Link;
 
 var Header = React.createClass({
     render: function () {
@@ -11,22 +12,30 @@ var Header = React.createClass({
                 <ul className="nav navbar-nav navbar-right">
                     {this.renderNav()}
                 </ul>
-
             </div>
         </nav>
     },
     renderNav: function () {
         var links = [{
-            path: 'week',
+            path: 'track',
             id: '1',
-            name: 'Current Week'
+            name: 'Track'
         }, {
-            path: 'week',
+            path: 'progress',
             id: '2',
-            name: 'Other Week'
+            name: 'Progress'
+        }, {
+            path: 'edit',
+            id: '3',
+            name: 'Edit'
         }];
         return links.map(function (link) {
-            return <Link to={link.path} params={{id: link.id}}> </Link>
+            return <li key={link.id}>
+                <Link activeClassName="active"
+                      to={link.path}>
+                    {link.name}
+                </Link>
+            </li>
         })
     }
 });
