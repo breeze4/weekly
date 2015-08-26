@@ -7,9 +7,10 @@ var Header = React.createClass({
     render: function () {
         return <nav className="navbar navbar-default header">
             <div className="container-fluid">
-                <Link to="main" className="navbar-brand">Weekly Planner
+                <Link to="main" className="navbar-brand"
+                      activeClassName="activex">Weekly Planner
                 </Link>
-                <ul className="nav navbar-nav navbar-right">
+                <ul className="nav navbar-nav navbar-right menu">
                     {this.renderNav()}
                 </ul>
             </div>

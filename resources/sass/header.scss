@@ -1,0 +1,21 @@
+@import 'mixins';
+
+.menu {
+  display: -webkit-flex;
+  display: flex;
+
+  @include phone {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  @include tablet {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+
+  @include desktop {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+}

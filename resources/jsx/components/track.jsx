@@ -1,9 +1,17 @@
 var React = require('react');
+var Week = require('./week-track');
 
 module.exports = React.createClass({
     render: function () {
         return <div>
-            Track!
+            <div className="panel panel-default">
+                <div className="panel-heading">
+                    Track Week
+                </div>
+                <div className="panel-body">
+                    <Week />
+                </div>
+            </div>
         </div>
     }
 });

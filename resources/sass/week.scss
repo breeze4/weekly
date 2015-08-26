@@ -1,0 +1,13 @@
+.week {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .week {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}

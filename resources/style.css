@@ -1,2 +1,30 @@
+.menu {
+  display: -webkit-flex;
+  display: flex; }
+  @media (max-width: 768px) {
+    .menu {
+      -webkit-flex-direction: column;
+      flex-direction: column; } }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .menu {
+      -webkit-flex-direction: row;
+      flex-direction: row; } }
+  @media (min-width: 1024px) {
+    .menu {
+      -webkit-flex-direction: row;
+      flex-direction: row; } }
+
+
 .header .active {
   font-weight: 700; }
+
+.week {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row; }
+
+@media (max-width: 768px) {
+  .week {
+    -webkit-flex-direction: column;
+    flex-direction: column; } }
