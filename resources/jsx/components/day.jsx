@@ -8,7 +8,14 @@ module.exports = React.createClass({
     },
     render: function () {
         return <div className="day">
-            {this.state.name}
+            <div className="day-header">
+                {this.state.name}
+            </div>
+            <div className="day-body">
+                <p>Eating</p>
+
+                <p>Fitness</p>
+            </div>
         </div>
     }
 });

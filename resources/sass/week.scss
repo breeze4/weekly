@@ -1,13 +1,38 @@
+@import 'mixins';
+
 .week {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-}
+  justify-content: space-between;
 
-@media (max-width: 768px) {
-  .week {
+  @include phone {
     -webkit-flex-direction: column;
     flex-direction: column;
   }
+
+  @include tablet {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+
+  @include desktop {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+.day {
+  border: 1px solid black;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.day-header {
+  padding: 5px;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+}
+
+.day-body {
+  padding: 5px;
 }
