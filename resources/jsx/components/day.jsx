@@ -20,6 +20,7 @@ module.exports = React.createClass({
                 </p>
 
                 <TrackingButtons />
+                <hr />
 
                 <p>Fitness:
                     <FitnessSummary />

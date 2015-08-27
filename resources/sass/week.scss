@@ -48,14 +48,20 @@
 
   .day-body {
     padding: 5px;
+    align-items: center;
   }
 
   .day-buttons {
     display: -webkit-flex;
     display: flex;
     justify-content: center;
-    -webkit-flex-direction: row;
-    flex-direction: row;
+    align-items: center;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+
+    .btn {
+      width: 80%;
+    }
   }
 
   .fa, .glyphicon {

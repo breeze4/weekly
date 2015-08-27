@@ -57,12 +57,16 @@
     padding: 5px;
     background-color: lightgray; }
   .day .day-body {
-    padding: 5px; }
+    padding: 5px;
+    align-items: center; }
   .day .day-buttons {
     display: -webkit-flex;
     display: flex;
     justify-content: center;
-    -webkit-flex-direction: row;
-    flex-direction: row; }
+    align-items: center;
+    -webkit-flex-direction: column;
+    flex-direction: column; }
+    .day .day-buttons .btn {
+      width: 80%; }
   .day .fa, .day .glyphicon {
     margin-left: 5px; }

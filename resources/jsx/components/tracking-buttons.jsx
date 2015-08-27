@@ -2,7 +2,7 @@ var React = require('react');
 
 module.exports = React.createClass({
     render: function () {
-        return <div className="btn-group day-buttons">
+        return <div className="btn-group-vertical day-buttons">
             <button className="btn btn-success" type="submit">
                 Yep!
                 <span className="fa fa-smile-o"></span>
