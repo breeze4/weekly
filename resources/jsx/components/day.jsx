@@ -1,4 +1,7 @@
 var React = require('react');
+var TrackingButtons = require('./tracking-buttons');
+var EatingSummary = require('./eating-summary');
+var FitnessSummary = require('./fitness-summary');
 
 module.exports = React.createClass({
     getInitialState: function () {
@@ -13,45 +16,16 @@ module.exports = React.createClass({
             </div>
             <div className="day-body">
                 <p>Eating:
-                    <b>2450 Calories</b>
-                    <ul>
-                        <li>200g Protein</li>
-                        <li>300g Carbs</li>
-                        <li>50g Fat</li>
-                    </ul>
+                    <EatingSummary />
                 </p>
 
-                <div className="btn-group day-buttons">
-                    <button className="btn btn-success" type="submit">
-                        Yep!
-                        <span className="fa fa-smile-o"></span>
-                    </button>
-                    <button className="btn btn-danger" type="submit">
-                        Nope
-                        <span className="fa fa-frown-o"></span>
-                    </button>
-                    <button className="btn btn-warning" type="submit">
-                        Close
-                        <span className="fa fa-meh-o"></span>
-                    </button>
-                </div>
+                <TrackingButtons />
 
-                <p>Fitness</p>
+                <p>Fitness:
+                    <FitnessSummary />
+                </p>
 
-                <div className="btn-group day-buttons">
-                    <button className="btn btn-success" type="submit">
-                        Yep!
-                        <span className="fa fa-smile-o"></span>
-                    </button>
-                    <button className="btn btn-danger" type="submit">
-                        Nope
-                        <span className="fa fa-frown-o"></span>
-                    </button>
-                    <button className="btn btn-warning" type="submit">
-                        Close
-                        <span className="fa fa-meh-o"></span>
-                    </button>
-                </div>
+                <TrackingButtons />
             </div>
         </div>
     }
