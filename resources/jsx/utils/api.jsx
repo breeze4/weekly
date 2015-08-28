@@ -15,5 +15,20 @@ module.exports = window.api = {
         });
 
         return data.promise;
+    },
+    getFitness: function () {
+        var data = q.defer();
+
+        data.resolve({
+            type: 'Gym',
+            lowMins: 15,
+            lowCals: 25,
+            medMins: 30,
+            medCals: 100,
+            highMins: 15,
+            highCals: 75
+        });
+
+        return data.promise;
     }
 };

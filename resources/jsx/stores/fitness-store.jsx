@@ -4,8 +4,8 @@ var Actions = require('../actions');
 
 module.exports = Reflux.createStore({
     listenables: [Actions],
-    getEating: function () {
-        return Api.getEating('userId1231231').then(function (data) {
+    getFitness: function () {
+        return Api.getFitness('userId1231231').then(function (data) {
             this.fitnessData = data;
             this.triggerChange();
         }.bind(this));
