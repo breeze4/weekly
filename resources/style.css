@@ -21,7 +21,14 @@
 .week {
   display: -webkit-flex;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  animation: fadein 0.85s ease-out; }
+
+@keyframes fadein {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1.0; } }
   @media (max-width: 768px) {
     .week {
       -webkit-flex-direction: column;
@@ -55,10 +62,17 @@
     border-bottom: 1px solid black;
     font-weight: 600;
     padding: 5px;
-    background-color: lightgray; }
+    background-color: lightgray;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
   .day .day-body {
     padding: 5px;
     align-items: center; }
+    .day .day-body .form-group {
+      margin-left: 5px;
+      margin-right: 5px; }
+    .day .day-body hr {
+      margin-top: 65px; }
   .day .day-buttons {
     display: -webkit-flex;
     display: flex;
@@ -70,3 +84,7 @@
       width: 80%; }
   .day .fa, .day .glyphicon {
     margin-left: 5px; }
+  .day .form-control {
+    padding: 2px 4px; }
+  .day .input-group-addon {
+    padding: 2px 4px; }

@@ -14,14 +14,9 @@ module.exports = React.createClass({
                 {this.state.name}
             </div>
             <div className="day-body">
-                <p>Eating:
-                    <EatingEdit />
-                </p>
-                <hr />
-
-                <p>Fitness:
-                    <FitnessEdit />
-                </p>
+                <EatingEdit />
+                <hr/>
+                <FitnessEdit />
             </div>
         </div>
     }

@@ -11,6 +11,7 @@ module.exports = React.createClass({
     getInitialState: function () {
         return {
             fitness: {
+                totalCalories: 0,
                 type: null,
                 lowMins: null,
                 lowCals: null,
@@ -25,12 +26,13 @@ module.exports = React.createClass({
         Actions.getFitness();
     },
     render: function () {
-        return <div>
-            {this.state.fitness.type ? <b>{this.state.fitness.type}</b> : null }
+        return <form>
+            <div className="form-group row">
+                <h4>{this.state.fitness.type ? this.state.fitness.type : null }</h4>
 
-
-            <EditButtons />
-        </div>
+                <p>Total Calories Burned: {this.state.fitness.totalCalories}</p>
+            </div>
+        </form>
     },
     onChange: function (event, fitnessData) {
         this.setState({

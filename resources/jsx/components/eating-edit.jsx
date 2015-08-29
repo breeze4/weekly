@@ -36,11 +36,13 @@ module.exports = React.createClass({
         Actions.getEating();
     },
     render: function () {
-        return <form className="container">
+        return <form>
             <div className="form-group row">
-                <strong>
+                <h4>Eating</h4>
+
+                <p>
                     Total Calories: {this.state.eating.totalCalories}
-                </strong>
+                </p>
             </div>
             <MacroInput
                 macro={this.state.eating.protein}

@@ -5,6 +5,16 @@
   display: flex;
   justify-content: space-between;
 
+  animation: fadein .85s ease-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+
   @include phone {
     -webkit-flex-direction: column;
     flex-direction: column;
@@ -44,11 +54,23 @@
     font-weight: 600;
     padding: 5px;
     background-color: lightgray;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
 
   .day-body {
     padding: 5px;
     align-items: center;
+
+    .form-group {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    hr {
+      margin-top: 65px;
+    }
+
   }
 
   .day-buttons {
@@ -66,6 +88,14 @@
 
   .fa, .glyphicon {
     margin-left: 5px;
+  }
+
+  .form-control {
+    padding: 2px 4px;
+  }
+
+  .input-group-addon {
+    padding: 2px 4px;
   }
 
 }
