@@ -86,7 +86,7 @@ module.exports = React.createClass({
     handleEdit: function () {
         this.setState({
             editing: true,
-            oldValues: this.state.eating
+            oldValues: JSON.parse(JSON.stringify(this.state.eating))
         })
     },
     handleSave: function () {
@@ -95,9 +95,9 @@ module.exports = React.createClass({
         })
     },
     handleCancel: function () {
+        Actions.resetMacros(this.state.oldValues);
         this.setState({
-            editing: false,
-            eating: this.state.oldValues
+            editing: false
         })
     },
     onChange: function (event, eatingData) {

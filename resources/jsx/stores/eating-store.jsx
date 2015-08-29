@@ -38,6 +38,11 @@ module.exports = Reflux.createStore({
         Api.updateEating(newEatingData);
         this.triggerChange();
     },
+    resetMacros: function (resetEatingData) {
+        Api.updateEating(resetEatingData);
+        this.eatingData = resetEatingData;
+        this.triggerChange();
+    },
     triggerChange: function () {
         this.trigger('change', this.eatingData);
     }
