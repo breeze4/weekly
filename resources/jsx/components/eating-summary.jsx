@@ -10,13 +10,22 @@ module.exports = React.createClass({
     getInitialState: function () {
         return {
             eating: {
-                totalCalories: null,
-                proteinGrams: null,
-                proteinCals: null,
-                carbsGrams: null,
-                carbsCals: null,
-                fatGrams: null,
-                fatCals: null
+                totalCalories: 0,
+                protein: {
+                    name: 'Protein',
+                    grams: 0,
+                    calories: 0
+                },
+                carbohydrates: {
+                    name: 'Carbohydrates',
+                    grams: 0,
+                    calories: 0
+                },
+                fat: {
+                    name: 'Fat',
+                    grams: 0,
+                    calories: 0
+                }
             }
         }
     },
@@ -27,9 +36,9 @@ module.exports = React.createClass({
         return <div>
             {this.state.eating.totalCalories ? <b>{this.state.eating.totalCalories} Calories</b> : null }
             <ul>
-                {this.state.eating.proteinGrams ? <li>{this.state.eating.proteinGrams}g Protein</li> : null }
-                {this.state.eating.carbsGrams ? <li>{this.state.eating.carbsGrams}g Carbs</li> : null }
-                {this.state.eating.fatGrams ? <li>{this.state.eating.fatGrams}g Fat</li> : null }
+                {this.state.eating.protein.grams ? <li>{this.state.eating.protein.grams}g Protein</li> : null }
+                {this.state.eating.carbohydrates.grams ? <li>{this.state.eating.carbohydrates.grams}g Carbs</li> : null }
+                {this.state.eating.fat.grams ? <li>{this.state.eating.fat.grams}g Fat</li> : null }
             </ul>
         </div>
     },

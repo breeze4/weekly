@@ -40,6 +40,7 @@ module.exports = Reflux.createStore({
     },
     resetMacros: function (resetEatingData) {
         Api.updateEating(resetEatingData);
+        // ideally server would send back a WS msg with the new eating data
         this.eatingData = resetEatingData;
         this.triggerChange();
     },
