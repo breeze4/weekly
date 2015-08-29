@@ -3,6 +3,7 @@ var Reflux = require('reflux');
 var Actions = require('../actions');
 var EatingStore = require('../stores/eating-store');
 var EditButtons = require('./edit-buttons');
+var MacroInput = require('./macro-input');
 
 module.exports = React.createClass({
     mixins: [
@@ -13,12 +14,21 @@ module.exports = React.createClass({
             editing: false,
             eating: {
                 totalCalories: null,
-                proteinGrams: null,
-                proteinCals: null,
-                carbsGrams: null,
-                carbsCals: null,
-                fatGrams: null,
-                fatCals: null
+                protein: {
+                    name: 'Protein',
+                    grams: 0,
+                    calories: 0
+                },
+                carbohydrates: {
+                    name: 'Carbohydrates',
+                    grams: 0,
+                    calories: 0
+                },
+                fat: {
+                    name: 'Fat',
+                    grams: 0,
+                    calories: 0
+                }
             }
         }
     },
@@ -26,28 +36,24 @@ module.exports = React.createClass({
         Actions.getEating();
     },
     render: function () {
-        return <form className="form-inline container">
+        return <form className="container">
             <div className="form-group row">
-                <div className="input-group">
-                    <input type="text" className="form-control" disabled={!this.state.editing}
-                           placeholder="75 grams" onChange={this.onChange}
-                           value={this.state.eating.proteinGrams ? this.state.eating.proteinGrams + " grams" : null}/>
-                    <span className="input-group-addon">{this.state.eating.proteinCals} calories</span>
-                </div>
+                <strong>
+                    Total Calories: {this.state.eating.totalCalories}
+                </strong>
             </div>
-            <div className="form-group row">
-                <label for="carbGrams">Carbohydrates (g)</label>
-                <input type="text" className="form-control" disabled={!this.state.editing}
-                       id="carbGrams" placeholder="250" onChange={this.onChange}
-                       value={this.state.eating.carbGrams ? this.state.eating.carbGrams + " grams" : null}/>
-            </div>
-            <div className="form-group row">
-                <label for="fatGrams">Fat (g)</label>
-                <input type="text" className="form-control" disabled={!this.state.editing}
-                       id="fatGrams" placeholder="40" onChange={this.onChange}
-                       value={this.state.eating.proteinGrams ? this.state.eating.proteinGrams + " grams" : null}/>
-            </div>
-
+            <MacroInput
+                macro={this.state.eating.protein}
+                editing={this.state.editing}
+                />
+            <MacroInput
+                macro={this.state.eating.carbohydrates}
+                editing={this.state.editing}
+                />
+            <MacroInput
+                macro={this.state.eating.fat}
+                editing={this.state.editing}
+                />
             {this.renderButtons()}
 
         </form>
@@ -79,7 +85,8 @@ module.exports = React.createClass({
     },
     handleEdit: function () {
         this.setState({
-            editing: true
+            editing: true,
+            oldValues: this.state.eating
         })
     },
     handleSave: function () {
@@ -89,7 +96,8 @@ module.exports = React.createClass({
     },
     handleCancel: function () {
         this.setState({
-            editing: false
+            editing: false,
+            eating: this.state.oldValues
         })
     },
     onChange: function (event, eatingData) {

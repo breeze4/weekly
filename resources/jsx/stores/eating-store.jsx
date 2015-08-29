@@ -4,13 +4,41 @@ var Actions = require('../actions');
 
 module.exports = Reflux.createStore({
     listenables: [Actions],
+    init: function () {
+        this.eatingData = {
+            totalCalories: 0,
+            protein: {
+                name: 'Protein',
+                grams: 0,
+                calories: 0
+            },
+            carbohydrates: {
+                name: 'Carbohydrates',
+                grams: 0,
+                calories: 0
+            },
+            fat: {
+                name: 'Fat',
+                grams: 0,
+                calories: 0
+            }
+        };
+    },
     getEating: function () {
         return Api.getEating('userId1231231').then(function (data) {
-            this.fitnessData = data;
+            this.eatingData = data;
             this.triggerChange();
         }.bind(this));
     },
+    updateMacros: function (macro, grams) {
+        var newEatingData = this.eatingData;
+        var macroName = macro.toLowerCase();
+        newEatingData[macroName].grams = grams;
+
+        Api.updateEating(newEatingData);
+        this.triggerChange();
+    },
     triggerChange: function () {
-        this.trigger('change', this.fitnessData);
+        this.trigger('change', this.eatingData);
     }
 });
