@@ -10,6 +10,7 @@
     [weekly.repository :refer [stub-data]]
     [org.httpkit.server :refer [run-server with-channel on-close on-receive send!]]
     [clojure.tools.logging :refer [info]]
+    [weekly.api :as api]
     ))
 
 (def user-state (atom {}))
@@ -24,16 +25,15 @@
 
 (defn in-dev? [] true)
 
-(defn handler [request]
+(defn handler [request id]
   (with-channel request channel
-                (info channel "connected")
-                (on-close channel (fn [status] (println "channel closed: " status)))
-                (on-receive channel (fn [data]              ;; echo it back
-                                      (send! channel data)))))
+                (info channel "connected" request)
+                (on-close channel #(api/on-close id %))
+                (on-receive channel #(api/on-receive % id))))
 
 (defroutes app-routes
            (GET "/" [] (file-response "index.html" {:root "resources"}))
-           (GET "/ws" [] handler)
+           (GET "/ws/:id" [id :as request] (handler request id))
            (context "/api/:week-id" [week-id]
              (GET "/" [week-id] (response (stub-data week-id))))
            (route/not-found "<h1>Page not found</h1>"))
