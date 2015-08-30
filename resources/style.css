@@ -5,11 +5,11 @@
     .menu {
       -webkit-flex-direction: column;
       flex-direction: column; } }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 991px) {
     .menu {
       -webkit-flex-direction: row;
       flex-direction: row; } }
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     .menu {
       -webkit-flex-direction: row;
       flex-direction: row; } }
@@ -17,6 +17,10 @@
 
 .header .active {
   font-weight: 700; }
+
+.panel-heading h3 {
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .week {
   display: -webkit-flex;
@@ -33,11 +37,11 @@
     .week {
       -webkit-flex-direction: column;
       flex-direction: column; } }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 991px) {
     .week {
       -webkit-flex-direction: row;
       flex-direction: row; } }
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     .week {
       -webkit-flex-direction: row;
       flex-direction: row; } }
@@ -72,7 +76,10 @@
       margin-left: 5px;
       margin-right: 5px; }
     .day .day-body hr {
-      margin-top: 65px; }
+      margin-top: 65px;
+      margin-bottom: 0px; }
+    .day .day-body .btn {
+      padding: 6px 8px; }
   .day .day-buttons {
     display: -webkit-flex;
     display: flex;
@@ -84,7 +91,30 @@
       width: 80%; }
   .day .fa, .day .glyphicon {
     margin-left: 5px; }
-  .day .form-control {
+  .day .input-group {
     padding: 2px 4px; }
-  .day .input-group-addon {
-    padding: 2px 4px; }
+    .day .input-group .form-control {
+      padding: 2px 4px; }
+      @media (min-width: 768px) and (max-width: 991px) {
+        .day .input-group .form-control {
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px; } }
+      @media (min-width: 992px) {
+        .day .input-group .form-control {
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px; } }
+      @media (min-width: 1160px) {
+        .day .input-group .form-control {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px; } }
+    .day .input-group .input-group-addon {
+      padding: 2px 4px; }
+      @media (min-width: 768px) and (max-width: 991px) {
+        .day .input-group .input-group-addon {
+          display: none; } }
+      @media (min-width: 992px) {
+        .day .input-group .input-group-addon {
+          display: none; } }
+      @media (min-width: 1160px) {
+        .day .input-group .input-group-addon {
+          display: table-cell; } }

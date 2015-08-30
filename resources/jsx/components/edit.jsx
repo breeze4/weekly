@@ -6,9 +6,10 @@ module.exports = React.createClass({
         return <div>
             <div className="panel panel-default">
                 <div className="panel-heading">
-                    Track Week
+                    <h3>Edit Week</h3>
                 </div>
                 <div className="panel-body">
+                    <p></p>
                     <Week editing={true}/>
                 </div>
             </div>
