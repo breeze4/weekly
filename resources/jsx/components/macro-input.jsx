@@ -1,5 +1,4 @@
 var React = require('react');
-var Week = require('./week-track');
 var Actions = require('../actions');
 
 module.exports = React.createClass({

@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'variables';
 
 .panel-heading h3 {
   margin-top: 0;
@@ -6,9 +7,6 @@
 }
 
 .week {
-  display: -webkit-flex;
-  display: flex;
-  justify-content: space-between;
 
   animation: fadein .85s ease-out;
   @keyframes fadein {
@@ -20,20 +18,6 @@
     }
   }
 
-  @include phone {
-    -webkit-flex-direction: column;
-    flex-direction: column;
-  }
-
-  @include tablet {
-    -webkit-flex-direction: row;
-    flex-direction: row;
-  }
-
-  @include desktop {
-    -webkit-flex-direction: row;
-    flex-direction: row;
-  }
 }
 
 .day {
@@ -139,4 +123,29 @@
 
   }
 
+}
+
+.DayPicker-Weekdays div {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+
+.DayPicker-Weekday {
+  display: block;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+
+  color: black;
+  text-align: center;
+  font-size: 1em;
+  margin: 0 3px;
+
+  position: relative;
+  box-shadow: 1px 1px 1px 0px $shadow-color;
+  border: 1px solid green;
 }

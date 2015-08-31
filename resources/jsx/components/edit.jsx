@@ -10,7 +10,9 @@ module.exports = React.createClass({
                 </div>
                 <div className="panel-body">
                     <p></p>
-                    <Week editing={true}/>
+                    <Week editing={true}
+                          selectedDay={this.props.params.day}
+                          weekId="8-5-2015"/>
                 </div>
             </div>
         </div>

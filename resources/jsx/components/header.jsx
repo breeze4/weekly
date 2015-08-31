@@ -26,7 +26,7 @@ var Header = React.createClass({
             id: '2',
             name: 'Progress'
         }, {
-            path: 'edit',
+            path: 'current-edit',
             id: '3',
             name: 'Edit'
         }];

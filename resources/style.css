@@ -18,14 +18,12 @@
 .header .active {
   font-weight: 700; }
 
+
 .panel-heading h3 {
   margin-top: 0;
   margin-bottom: 0; }
 
 .week {
-  display: -webkit-flex;
-  display: flex;
-  justify-content: space-between;
   animation: fadein 0.85s ease-out; }
 
 @keyframes fadein {
@@ -33,18 +31,6 @@
     opacity: 0; }
   100% {
     opacity: 1.0; } }
-  @media (max-width: 768px) {
-    .week {
-      -webkit-flex-direction: column;
-      flex-direction: column; } }
-  @media (min-width: 768px) and (max-width: 991px) {
-    .week {
-      -webkit-flex-direction: row;
-      flex-direction: row; } }
-  @media (min-width: 992px) {
-    .week {
-      -webkit-flex-direction: row;
-      flex-direction: row; } }
 
 .day {
   display: -webkit-flex;
@@ -118,3 +104,24 @@
       @media (min-width: 1160px) {
         .day .input-group .input-group-addon {
           display: table-cell; } }
+
+.DayPicker-Weekdays div {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 7px; }
+
+.DayPicker-Weekday {
+  display: block;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  color: black;
+  text-align: center;
+  font-size: 1em;
+  margin: 0 3px;
+  position: relative;
+  box-shadow: 1px 1px 1px 0px grey;
+  border: 1px solid green; }
