@@ -105,7 +105,7 @@
         .day .input-group .input-group-addon {
           display: table-cell; } }
 
-.DayPicker-Weekdays div {
+.week-nav {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
@@ -113,7 +113,7 @@
   justify-content: center;
   margin-bottom: 7px; }
 
-.DayPicker-Weekday {
+.week-nav-day {
   display: block;
   height: 30px;
   width: 30px;

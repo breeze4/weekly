@@ -1,26 +1,43 @@
 var React = require('react');
-var WeekdayPicker = require('react-weekday-picker');
-var DateUtils = WeekdayPicker.Utils;
+var DayButton = require('./day-button');
 
 module.exports = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {
-            selectedDay: this.props.selectedDay
+            currentDay: 'Sunday',
+            week: [{
+                name: "Sunday"
+            }, {
+                name: "Monday"
+            }, {
+                name: "Tuesday"
+            }, {
+                name: "Wednesday"
+            }, {
+                name: "Thursday"
+            }, {
+                name: "Friday"
+            }, {
+                name: "Saturday"
+            }],
+            selectedDay: this.props.selectedDay,
+            weekId: this.props.weekId
         }
     },
     render: function () {
-        var modifiers = {
-            'weekend': function (weekday) {
-                return weekday == 0 || weekday == 6;
-            },
-            'selected': function (weekday) {
-                return this.state && this.state.selectedDay === weekday;
-            }.bind(this)
-        };
 
-        return <WeekdayPicker
-            modifiers={modifiers}
-            onWeekdayClick={this.handleDayClick}/>
+        return <div className="week-nav">
+            {this.renderDayButtons()}
+        </div>
+    },
+    renderDayButtons: function () {
+        return this.state.week.map(function (day, index) {
+            var isSelected = this.state.selectedDay === index;
+            return <DayButton
+                name={day.name}
+                onClick={this.handleDayClick}
+                selected={isSelected}/>
+        }.bind(this))
     },
     handleDayClick: function (event, day) {
         if (event.target.title) {
