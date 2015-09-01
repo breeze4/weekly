@@ -1,25 +1,12 @@
 var React = require('react');
 var DayButton = require('./day-button');
+var Constants = require('../utils/constants');
 
-module.exports = React.createClass({
+var WeekdayPicker = React.createClass({
     getInitialState: function () {
         return {
             currentDay: 'Sunday',
-            week: [{
-                name: "Sunday"
-            }, {
-                name: "Monday"
-            }, {
-                name: "Tuesday"
-            }, {
-                name: "Wednesday"
-            }, {
-                name: "Thursday"
-            }, {
-                name: "Friday"
-            }, {
-                name: "Saturday"
-            }],
+            week: Constants.WEEK_ARRAY,
             selectedDay: this.props.selectedDay,
             weekId: this.props.weekId
         }
@@ -34,7 +21,7 @@ module.exports = React.createClass({
         return this.state.week.map(function (day, index) {
             var isSelected = this.state.selectedDay === index;
             return <DayButton
-                name={day.name}
+                name={day.abbrev}
                 onClick={this.handleDayClick}
                 selected={isSelected}/>
         }.bind(this))
@@ -48,3 +35,5 @@ module.exports = React.createClass({
         });
     }
 });
+
+module.exports = WeekdayPicker;

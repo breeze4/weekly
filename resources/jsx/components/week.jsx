@@ -3,6 +3,7 @@ var DayTrack = require('./day-track');
 var DayEdit = require('./day-edit');
 var WeekdayPicker = require('./weekday-picker');
 var Moment = require('moment');
+var _ = require('underscore');
 
 var WEEK = [{
     name: "Sunday"
@@ -20,25 +21,13 @@ var WEEK = [{
     name: "Saturday"
 }];
 
+var WEEK_MAP = _.indexBy(WEEK, "name");
+
 var Week = React.createClass({
     getInitialState: function () {
         return {
             currentDay: 'Sunday',
-            week: [{
-                name: "Sunday"
-            }, {
-                name: "Monday"
-            }, {
-                name: "Tuesday"
-            }, {
-                name: "Wednesday"
-            }, {
-                name: "Thursday"
-            }, {
-                name: "Friday"
-            }, {
-                name: "Saturday"
-            }],
+            week: WEEK,
             selectedDay: this.props.selectedDay || Week.getCurrentDay(),
             weekId: this.props.weekId
         }
@@ -52,7 +41,7 @@ var Week = React.createClass({
         </div>
     },
     renderDay: function (dayName) {
-        var day = this.state.week[dayName];
+        var day = WEEK_MAP[dayName];
 
         if (this.props.editing) {
             return <DayEdit {...day} />

@@ -2,7 +2,7 @@ var React = require('react');
 var EatingEdit = require('./eating-edit');
 var FitnessEdit = require('./fitness-edit');
 
-module.exports = React.createClass({
+var DayEdit = React.createClass({
     getInitialState: function () {
         return {
             name: this.props.name
@@ -21,3 +21,5 @@ module.exports = React.createClass({
         </div>
     }
 });
+
+module.exports = DayEdit;

@@ -3,7 +3,7 @@ var TrackingButtons = require('./tracking-buttons');
 var EatingSummary = require('./eating-summary');
 var FitnessSummary = require('./fitness-summary');
 
-module.exports = React.createClass({
+var DayTrack = React.createClass({
     getInitialState: function () {
         return {
             name: this.props.name
@@ -31,3 +31,5 @@ module.exports = React.createClass({
         </div>
     }
 });
+
+module.exports = DayTrack;
