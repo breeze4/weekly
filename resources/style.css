@@ -118,59 +118,62 @@ a {
   margin-bottom: 7px; }
 
 .week-nav-day {
-  display: block;
-  height: 30px;
-  width: 30px;
-  line-height: 30px;
-  color: black;
-  text-align: center;
-  font-size: 1em;
-  margin: 0 3px;
-  position: relative;
-  box-shadow: 1px 1px 1px 0px grey;
-  border: 1px solid green; }
-
-.week-nav-day {
-  width: 50px;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  border: 1px solid green;
+  background-color: white;
+  width: 41px;
+  margin-right: 1px;
+  margin-left: 1px; }
+
+.week-nav-link-container {
+  width: 39px;
+  padding-right: 10px;
+  padding-left: 10px; }
+  .week-nav-link-container.selected {
+    background-color: lightblue; }
 
 .preview-status-button-container {
   display: -webkit-flex;
   display: flex;
-  background-color: white;
-  width: 42px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   -webkit-flex-direction: column;
-  flex-direction: column;
-  margin-top: 1px; }
+  flex-direction: column; }
 
 .preview-status-buttons {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
-  border: 1px solid green;
-  margin-bottom: 2px;
-  border-radius: 5px;
-  background-color: lightgrey; }
+  margin-bottom: 2px; }
+  .preview-status-buttons .yes {
+    background-color: #5cb85c; }
+  .preview-status-buttons .no {
+    background-color: #d9534f; }
+  .preview-status-buttons .close {
+    background-color: #f0ad4e; }
+  .preview-status-buttons .fa-bicycle {
+    padding-left: 0;
+    padding-right: 1px; }
+  .preview-status-buttons:hover {
+    border: 1px dashed blue; }
 
 .preview-status-button-eat {
-  width: 21px;
-  height: 21px;
-  padding: 4px 1px;
-  border-radius: 5px; }
+  width: 19px;
+  height: 19px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  margin-top: -2px; }
 
 .preview-status-button-fit {
-  width: 21px;
-  height: 21px;
-  padding: 4px 1px;
-  background-color: lightgrey;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-radius: 5px; }
+  width: 19px;
+  height: 19px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  margin-top: -2px; }
