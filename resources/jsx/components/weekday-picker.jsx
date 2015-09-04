@@ -1,6 +1,7 @@
 var React = require('react');
 var DayButton = require('./day-button');
 var Constants = require('../utils/constants');
+var Moment = require('moment');
 
 var WeekdayPicker = React.createClass({
     getInitialState: function () {

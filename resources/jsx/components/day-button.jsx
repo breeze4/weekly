@@ -24,7 +24,7 @@ module.exports = React.createClass({
     },
     render: function () {
         return <div className="week-nav-day">
-            <Link activeClassName="selected" to="edit" params={{week:"8-5-2015", day: this.props.name}}>
+            <Link activeClassName="selected" to="edit" params={{week:"36-2015", day: this.props.name}}>
                 <div className={"week-nav-link-container" + (this.state.selected ? " selected" : "")}>
                     {this.props.name}
                 </div>
