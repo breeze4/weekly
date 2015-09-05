@@ -6,11 +6,16 @@ var Moment = require('moment');
 var WeekdayPicker = React.createClass({
     getInitialState: function () {
         return {
-            currentDay: 'Sunday',
+            day: this.props.currentDay,
             week: Constants.WEEK_ARRAY,
             selectedDay: this.props.selectedDay,
             weekId: this.props.weekId
         }
+    },
+    componentWillReceiveProps: function (newProps) {
+        this.setState({
+            selectedDay: newProps.selectedDay
+        })
     },
     render: function () {
 
@@ -20,11 +25,13 @@ var WeekdayPicker = React.createClass({
     },
     renderDayButtons: function () {
         return this.state.week.map(function (day, index) {
-            var isSelected = this.state.selectedDay === index;
+            var isSelected = this.state.selectedDay === day.name;
             return <DayButton
-                name={day.abbrev}
+                abbrev={day.abbrev}
+                name={day.name}
                 onClick={this.handleDayClick}
-                selected={isSelected}/>
+                selected={isSelected}
+                weekId={this.props.weekId}/>
         }.bind(this))
     },
     handleDayClick: function (event, day) {

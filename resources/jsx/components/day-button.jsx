@@ -2,31 +2,25 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 
-module.exports = React.createClass({
-    mixins: [Router.State],
+var DayButton = React.createClass({
     getInitialState: function () {
-        var params = this.getParams();
         return {
-            selected: params && params.day === this.props.name
+            week: this.props.weekId,
+            selected: this.props.selected,
+            name: this.props.name,
+            abbrev: this.props.abbrev
         }
     },
     componentWillReceiveProps: function (newProps) {
-        var params = this.getParams();
-        if (params && params.day === this.props.name) {
-            this.setState({
-                selected: true
-            })
-        } else {
-            this.setState({
-                selected: false
-            })
-        }
+        this.setState({
+            selected: newProps.selected
+        })
     },
     render: function () {
         return <div className="week-nav-day">
-            <Link activeClassName="selected" to="edit" params={{week:"36-2015", day: this.props.name}}>
+            <Link to="edit" params={{week:this.state.week, day: this.state.name}}>
                 <div className={"week-nav-link-container" + (this.state.selected ? " selected" : "")}>
-                    {this.props.name}
+                    {this.state.abbrev}
                 </div>
             </Link>
 
@@ -54,3 +48,5 @@ module.exports = React.createClass({
         </div>
     }
 });
+
+module.exports = DayButton;

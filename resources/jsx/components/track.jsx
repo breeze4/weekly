@@ -1,5 +1,4 @@
 var React = require('react');
-var Week = require('./week');
 
 module.exports = React.createClass({
     render: function () {
@@ -9,7 +8,6 @@ module.exports = React.createClass({
                     Track Week
                 </div>
                 <div className="panel-body">
-                    <Week editing={false}/>
                 </div>
             </div>
         </div>

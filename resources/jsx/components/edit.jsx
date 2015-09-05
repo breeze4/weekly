@@ -1,45 +1,52 @@
 var React = require('react');
-var Week = require('./week');
 var Router = require('react-router');
 var Moment = require('moment');
+var Constants = require('../utils/constants');
+var DayUtil = require('../utils/day-util');
+var DayTrack = require('./day-track');
+var DayEdit = require('./day-edit');
+var WeekdayPicker = require('./weekday-picker');
 
 var Edit = React.createClass({
-    mixins: [Router.State],
+    mixins: [Router.State, Router.Navigation],
     getInitialState: function () {
-        var params = this.getParams();
-        var day = params && params.day;
-        var week = params && params.week;
-        var current;
-        if (!params || !params.day || !params.week) {
-            current = Edit.getCurrentWeek()
-        }
+        var params = this.props.params;
+        var day = params.day, week = params.week;
+        var current = DayUtil.getOrDefaultCurrentDay(day, week);
+
         return {
-            current: current
+            currentWeek: current.currentWeek,
+            currentDay: current.currentDay,
+            selectedDay: current.currentDay
         }
+    },
+    componentWillReceiveProps: function (newProps) {
+        this.setState({
+            selectedDay: newProps.params.day
+        })
     },
     render: function () {
         return <div>
             <div className="panel panel-default">
                 <div className="panel-heading">
-                    <h3>Editing Week: {this.state.current}</h3>
+                    <h3>Editing Week: {this.state.currentWeek}</h3>
                 </div>
                 <div className="panel-body">
-                    <p></p>
-                    <Week editing={true}
-                          selectedDay={this.props.params.day}
-                          weekId={this.state.current}/>
+                    <div className="week">
+                        <WeekdayPicker selectedDay={this.state.selectedDay}
+                                       currentDay={this.state.currentDay}
+                                       weekId={this.state.currentWeek}/>
+                        {this.renderDay(this.state.currentDay)}
+                    </div>
                 </div>
             </div>
         </div>
     },
-    statics: {
-        getCurrentWeek: function getCurrentWeek() {
-            var currentDate = Moment(new Date());
-            var currentWeekNumber = currentDate.get('weeks');
-            var currentYearNumber = currentDate.get('years');
-            return currentWeekNumber + "-" + currentYearNumber;
-        }
-    }
+    renderDay: function (dayName) {
+        var day = Constants.WEEK_MAP[dayName];
+        return <DayEdit {...day} />;
+    },
+    statics: {}
 });
 
 module.exports = Edit;
