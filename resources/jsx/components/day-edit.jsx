@@ -7,7 +7,9 @@ var DayEdit = React.createClass({
         return {
             month: this.props.month,
             day: this.props.day,
-            year: this.props.year
+            year: this.props.year,
+            date: this.props.date,
+            name: this.props.date.format('dddd')
         }
     },
     render: function () {

@@ -15,6 +15,9 @@ var DayButton = React.createClass({
     },
     componentWillReceiveProps: function (newProps) {
         this.setState({
+            day: newProps.day,
+            month: newProps.month,
+            year: newProps.year,
             selected: newProps.selected
         })
     },
@@ -46,7 +49,7 @@ var DayButton = React.createClass({
         </div>
     },
     renderFitnessStatusButtons: function () {
-        var buttons = ['fa-check-circle-o', 'fa-bicycle'];
+        var buttons = ['fa-bicycle', 'fa-check-circle-o'];
         return <div className="preview-status-buttons">
             {buttons.map(function (btnClass) {
                 return <span className={"preview-status-button-fit fa " + btnClass}></span>

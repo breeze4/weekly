@@ -16,6 +16,7 @@ var EditCurrent = React.createClass({
             var defaultParams = this.getDateParams();
             this.replaceWith('edit', defaultParams);
         }
+
         return <div>
             <Edit  />
         </div>

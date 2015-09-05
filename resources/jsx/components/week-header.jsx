@@ -14,6 +14,7 @@ var WeekHeader = React.createClass({
             month: this.props.month,
             day: this.props.day,
             year: this.props.year,
+            date: this.props.date,
             previousDate: previousDate,
             nextDate: nextDate
         }
@@ -22,9 +23,10 @@ var WeekHeader = React.createClass({
         var previousDate = newProps.date.clone().subtract(1, 'weeks');
         var nextDate = newProps.date.clone().add(1, 'weeks');
         this.setState({
-            month: this.props.month,
-            day: this.props.day,
-            year: this.props.year,
+            month: newProps.month,
+            day: newProps.day,
+            year: newProps.year,
+            date: newProps.date,
             previousDate: previousDate,
             nextDate: nextDate
         })
@@ -58,15 +60,18 @@ var WeekHeader = React.createClass({
         </div>
     },
     renderDayButtons: function () {
+        var currentDayOfWeek = this.state.date.day();
         return this.state.weekdays.map(function (day, index) {
-            var isSelected = this.state.selectedDay === day.name;
+            var isSelected = currentDayOfWeek === index;
+            var date = this.state.date.clone();
+            var weekDate = date.day(index);
             return <DayButton
                 abbrev={day.abbrev}
                 name={day.name}
                 selected={isSelected}
-                day={this.props.day}
-                month={this.props.month}
-                year={this.props.year}/>
+                day={weekDate.format('D')}
+                month={weekDate.format('M')}
+                year={weekDate.format('YYYY')}/>
         }.bind(this))
     }
 });
