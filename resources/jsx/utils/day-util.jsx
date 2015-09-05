@@ -1,27 +1,36 @@
 var Moment = require('moment');
 
 module.exports = {
-    getOrDefaultCurrentDay(day, week) {
-        var currentWeek, currentDay;
+    selectOrDefaultCurrentDay(params) {
+        var day = params && params.day, week = params && params.week;
         if (!day || !week) {
+            var currentWeek = this.getCurrentWeek();
             return {
-                currentWeek: this.getCurrentWeek(),
-                currentDay: this.getCurrentDay()
+                currentWeek: currentWeek.week + "-" + currentWeek.year,
+                currentDay: this.getCurrentDay(),
+                selectedDay: this.getCurrentDay(),
+                previousWeek: currentWeek.previousWeek,
+                nextWeek: currentWeek.nextWeek
             }
         } else {
             return {
+                currentWeek: week,
                 currentDay: day,
-                currentWeek: week
+                selectedDay: day,
+                previousWeek: params.week,
+                nextWeek: params.week
             }
         }
     },
     getCurrentWeek: function getCurrentWeek() {
         var currentDate = Moment(new Date());
-        var currentWeekNumber = currentDate.get('weeks');
-        var currentYearNumber = currentDate.get('years');
-        return currentWeekNumber + "-" + currentYearNumber;
-    }
-    ,
+        return {
+            week: currentDate.get('weeks'),
+            year: currentDate.get('years'),
+            nextWeek: currentDate.add(1, 'weeks'),
+            prevWeek: currentDate.subtract(1, 'weeks')
+        };
+    },
     getCurrentDay: function getCurrentDay() {
         var currentDate = Moment(new Date());
         var currentDay = currentDate.format('dddd');

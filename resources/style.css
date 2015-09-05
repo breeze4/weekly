@@ -22,11 +22,13 @@ a {
   font-weight: 700; }
 
 
-.panel-heading h3 {
-  margin-top: 0;
-  margin-bottom: 0; }
-
 .week {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   animation: fadein 0.85s ease-out; }
 
 @keyframes fadein {
@@ -34,6 +36,79 @@ a {
     opacity: 0; }
   100% {
     opacity: 1.0; } }
+
+.week-nav {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 7px; }
+
+.week-nav-day {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid green;
+  background-color: white;
+  width: 41px;
+  margin-right: 1px;
+  margin-left: 1px; }
+
+.week-nav-link-container {
+  width: 39px;
+  padding-right: 10px;
+  padding-left: 10px; }
+  .week-nav-link-container.selected {
+    background-color: lightblue; }
+
+.preview-status-button-container {
+  display: -webkit-flex;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  -webkit-flex-direction: column;
+  flex-direction: column; }
+
+.preview-status-buttons {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 2px; }
+  .preview-status-buttons .yes {
+    background-color: #5cb85c; }
+  .preview-status-buttons .no {
+    background-color: #d9534f; }
+  .preview-status-buttons .close {
+    background-color: #f0ad4e; }
+  .preview-status-buttons .fa-bicycle {
+    padding-left: 0;
+    padding-right: 1px; }
+  .preview-status-buttons:hover {
+    border: 1px dashed blue; }
+
+.preview-status-button-eat {
+  width: 19px;
+  height: 19px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  margin-top: -2px; }
+
+.preview-status-button-fit {
+  width: 19px;
+  height: 19px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  margin-top: -2px; }
+
+.panel-heading h3 {
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .day {
   display: -webkit-flex;
@@ -108,72 +183,3 @@ a {
       @media (min-width: 1160px) {
         .day .input-group .input-group-addon {
           display: table-cell; } }
-
-.week-nav {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 7px; }
-
-.week-nav-day {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid green;
-  background-color: white;
-  width: 41px;
-  margin-right: 1px;
-  margin-left: 1px; }
-
-.week-nav-link-container {
-  width: 39px;
-  padding-right: 10px;
-  padding-left: 10px; }
-  .week-nav-link-container.selected {
-    background-color: lightblue; }
-
-.preview-status-button-container {
-  display: -webkit-flex;
-  display: flex;
-  width: 40px;
-  height: 40px;
-  -webkit-flex-direction: column;
-  flex-direction: column; }
-
-.preview-status-buttons {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 2px; }
-  .preview-status-buttons .yes {
-    background-color: #5cb85c; }
-  .preview-status-buttons .no {
-    background-color: #d9534f; }
-  .preview-status-buttons .close {
-    background-color: #f0ad4e; }
-  .preview-status-buttons .fa-bicycle {
-    padding-left: 0;
-    padding-right: 1px; }
-  .preview-status-buttons:hover {
-    border: 1px dashed blue; }
-
-.preview-status-button-eat {
-  width: 19px;
-  height: 19px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 4px;
-  margin-top: -2px; }
-
-.preview-status-button-fit {
-  width: 19px;
-  height: 19px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 4px;
-  margin-top: -2px; }

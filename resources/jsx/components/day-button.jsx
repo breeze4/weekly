@@ -5,7 +5,9 @@ var Link = Router.Link;
 var DayButton = React.createClass({
     getInitialState: function () {
         return {
-            week: this.props.weekId,
+            day: this.props.day,
+            week: this.props.week,
+            year: this.props.year,
             selected: this.props.selected,
             name: this.props.name,
             abbrev: this.props.abbrev
@@ -18,7 +20,11 @@ var DayButton = React.createClass({
     },
     render: function () {
         return <div className="week-nav-day">
-            <Link to="edit" params={{week:this.state.week, day: this.state.name}}>
+            <Link to="edit"
+                  params={{
+                    week:this.state.week,
+                    day: this.state.day,
+                    year: this.state.year}}>
                 <div className={"week-nav-link-container" + (this.state.selected ? " selected" : "")}>
                     {this.state.abbrev}
                 </div>

@@ -1,43 +1,55 @@
 var React = require('react');
 var Router = require('react-router');
-var Moment = require('moment');
 var Constants = require('../utils/constants');
-var DayUtil = require('../utils/day-util');
-var DayTrack = require('./day-track');
 var DayEdit = require('./day-edit');
+var DayUtil = require('../utils/day-util');
 var WeekdayPicker = require('./weekday-picker');
+var WeekHeader = require('./week-header');
+var Moment = require('moment');
 
 var Edit = React.createClass({
-    mixins: [Router.State, Router.Navigation],
+    mixins: [Router.State],
     getInitialState: function () {
-        var params = this.props.params;
-        var day = params.day, week = params.week;
-        var current = DayUtil.getOrDefaultCurrentDay(day, week);
+        var params = this.getParams();
+        var dateStr;
+        if(params || !params.year || !params.week || !params.day) {
+            dateStr = this.props.year + "-" + this.props.week + "-" + this.props.day;
+        } else {
+            dateStr = params.year + "-" + params.week + "-" + params.day;
+        }
+        var previousWeek = Moment(dateStr, "YYYY-ww-dddd").subtract(1, 'weeks');
+        var nextWeek = Moment(dateStr, "YYYY-ww-dddd").add(1, 'weeks');
 
         return {
-            currentWeek: current.currentWeek,
-            currentDay: current.currentDay,
-            selectedDay: current.currentDay
+            week: params.week || this.props.week,
+            day: params.day || this.props.day,
+            year: params.year || this.props.year,
+            previousWeek: previousWeek.get('weeks'),
+            previousYear: previousWeek.get('years'),
+            nextWeek: nextWeek.get('weeks'),
+            nextYear: nextWeek.get('years')
         }
     },
     componentWillReceiveProps: function (newProps) {
         this.setState({
-            selectedDay: newProps.params.day
+            week: newProps.week,
+            day: newProps.day,
+            year: newProps.year,
+            previousWeek: newProps.previousWeek,
+            previousYear: newProps.previousYear,
+            nextWeek: newProps.nextWeek,
+            nextYear: newProps.nextYear
         })
     },
     render: function () {
         return <div>
             <div className="panel panel-default">
                 <div className="panel-heading">
-                    <h3>Editing Week: {this.state.currentWeek}</h3>
+                    <h3>Editing Week: {this.state.week} - {this.state.year}</h3>
                 </div>
                 <div className="panel-body">
-                    <div className="week">
-                        <WeekdayPicker selectedDay={this.state.selectedDay}
-                                       currentDay={this.state.currentDay}
-                                       weekId={this.state.currentWeek}/>
-                        {this.renderDay(this.state.currentDay)}
-                    </div>
+                    <WeekHeader {...this.state}/>
+                    {this.renderDay(this.state.day)}
                 </div>
             </div>
         </div>

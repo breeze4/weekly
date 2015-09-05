@@ -29,18 +29,9 @@ var WeekdayPicker = React.createClass({
             return <DayButton
                 abbrev={day.abbrev}
                 name={day.name}
-                onClick={this.handleDayClick}
                 selected={isSelected}
                 weekId={this.props.weekId}/>
         }.bind(this))
-    },
-    handleDayClick: function (event, day) {
-        if (event.target.title) {
-            console.log(event.target.title, day)
-        }
-        this.setState({
-            selectedDay: day
-        });
     }
 });
 
