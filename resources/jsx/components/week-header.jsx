@@ -7,36 +7,35 @@ var DayButton = require('./day-button');
 
 var WeekHeader = React.createClass({
     getInitialState: function () {
+        var previousDate = this.props.date.clone().subtract(1, 'weeks');
+        var nextDate = this.props.date.clone().add(1, 'weeks');
         return {
             weekdays: Constants.WEEK_ARRAY,
-            week: this.props.week,
+            month: this.props.month,
             day: this.props.day,
             year: this.props.year,
-            previousWeek: this.props.previousWeek,
-            previousYear: this.props.previousYear,
-            nextWeek: this.props.nextWeek,
-            nextYear: this.props.nextYear
+            previousDate: previousDate,
+            nextDate: nextDate
         }
     },
     componentWillReceiveProps: function (newProps) {
+        var previousDate = newProps.date.clone().subtract(1, 'weeks');
+        var nextDate = newProps.date.clone().add(1, 'weeks');
         this.setState({
-            weekdays: Constants.WEEK_ARRAY,
-            week: newProps.week,
-            day: newProps.day,
-            year: newProps.year,
-            previousWeek: newProps.previousWeek,
-            previousYear: newProps.previousYear,
-            nextWeek: newProps.nextWeek,
-            nextYear: newProps.nextYear
+            month: this.props.month,
+            day: this.props.day,
+            year: this.props.year,
+            previousDate: previousDate,
+            nextDate: nextDate
         })
     },
     render: function () {
         return <div className="week">
             <Link to="edit"
                   params={{
-                        week: this.state.previousWeek,
-                        day: this.state.day,
-                        year: this.state.year
+                        month: this.state.previousDate.format('M'),
+                        day: this.state.previousDate.format('D'),
+                        year: this.state.previousDate.format('YYYY')
                 }}>
                 <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             </Link>
@@ -45,9 +44,9 @@ var WeekHeader = React.createClass({
                 {this.renderDayButtons()}
             </div>
             <Link to="edit" params={{
-                        week: this.state.nextWeek,
-                        day: this.state.day,
-                        year: this.state.year
+                        month: this.state.nextDate.format('M'),
+                        day: this.state.nextDate.format('D'),
+                        year: this.state.nextDate.format('YYYY')
                 }}>
                 <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             </Link>
@@ -65,8 +64,8 @@ var WeekHeader = React.createClass({
                 abbrev={day.abbrev}
                 name={day.name}
                 selected={isSelected}
-                day={day.name}
-                week={this.props.week}
+                day={this.props.day}
+                month={this.props.month}
                 year={this.props.year}/>
         }.bind(this))
     }

@@ -6,7 +6,7 @@ var DayButton = React.createClass({
     getInitialState: function () {
         return {
             day: this.props.day,
-            week: this.props.week,
+            month: this.props.month,
             year: this.props.year,
             selected: this.props.selected,
             name: this.props.name,
@@ -22,7 +22,7 @@ var DayButton = React.createClass({
         return <div className="week-nav-day">
             <Link to="edit"
                   params={{
-                    week:this.state.week,
+                    month:this.state.month,
                     day: this.state.day,
                     year: this.state.year}}>
                 <div className={"week-nav-link-container" + (this.state.selected ? " selected" : "")}>

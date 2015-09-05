@@ -9,37 +9,24 @@ var Edit = require('./edit');
 var Moment = require('moment');
 
 var EditCurrent = React.createClass({
-    mixins: [Router.State],
-    getInitialState: function () {
-        var currentDate = Moment(new Date());
-        var previousWeek = Moment(new Date()).subtract(1, 'weeks');
-        var nextWeek = Moment(new Date()).add(1, 'weeks');
-        return {
-            week: currentDate.get('weeks'),
-            day: currentDate.format('dddd'),
-            year: currentDate.get('years'),
-            previousWeek: previousWeek.get('weeks'),
-            previousYear: previousWeek.get('years'),
-            nextWeek: nextWeek.get('weeks'),
-            nextYear: nextWeek.get('years')
-        }
-    },
-    componentWillReceiveProps: function (newProps) {
-        var currentDate = Moment(new Date());
-        var previousWeek = currentDate.subtract(1, 'weeks');
-        var nextWeek = currentDate.add(1, 'weeks');
-        this.setState({
-            week: currentDate.get('weeks'),
-            day: currentDate.format('dddd'),
-            year: currentDate.get('years'),
-            previousWeek: previousWeek.get('weeks'),
-            previousYear: previousWeek.get('years'),
-            nextWeek: nextWeek.get('weeks'),
-            nextYear: nextWeek.get('years')
-        })
-    },
+    mixins: [Router.State, Router.Navigation],
     render: function () {
-        return <Edit {...this.state}/>
+        var params = this.getParams();
+        if (!params.day || !params.month || !params.year) {
+            var defaultParams = this.getDateParams();
+            this.replaceWith('edit', defaultParams);
+        }
+        return <div>
+            <Edit  />
+        </div>
+    },
+    getDateParams: function () {
+        var currentDate = Moment(new Date());
+        return {
+            month: currentDate.format('M'),
+            day: currentDate.format('D'),
+            year: currentDate.format('YYYY')
+        }
     }
 });
 

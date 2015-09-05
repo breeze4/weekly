@@ -5,7 +5,9 @@ var FitnessEdit = require('./fitness-edit');
 var DayEdit = React.createClass({
     getInitialState: function () {
         return {
-            name: this.props.name
+            month: this.props.month,
+            day: this.props.day,
+            year: this.props.year
         }
     },
     render: function () {
