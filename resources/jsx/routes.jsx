@@ -12,7 +12,7 @@ var routes = (
     <Route name="main" path="/" handler={Main}>
         <Route name="track" path="track" handler={Track}/>
         <Route name="progress" path="progress" handler={Progress}/>
-        <Route name="current-edit" path="edit" handler={EditCurrent}>
+        <Route name="current-edit" path="edit" handler={Edit}>
             <Route name="edit" path="/edit/:year/:month/:day" handler={Edit}/>
         </Route>
         <DefaultRoute handler={Track}/>

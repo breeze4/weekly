@@ -7,9 +7,13 @@ var WeekHeader = require('./week-header');
 var Moment = require('moment');
 
 var Edit = React.createClass({
-    mixins: [Router.State],
+    mixins: [Router.State, Router.Navigation],
     getInitialState: function () {
         var params = this.getParams();
+        if (!params.day || !params.month || !params.year) {
+            var defaultParams = this.getDateParams();
+            this.replaceWith('edit', defaultParams);
+        }
         var dateStr = params.month + "-" + params.day + "-" + params.year;
         var date = Moment(dateStr, "M-D-YYYY");
 
@@ -44,7 +48,14 @@ var Edit = React.createClass({
             </div>
         </div>
     },
-    statics: {}
+    getDateParams: function () {
+        var currentDate = Moment(new Date());
+        return {
+            month: currentDate.format('M'),
+            day: currentDate.format('D'),
+            year: currentDate.format('YYYY')
+        }
+    }
 });
 
 module.exports = Edit;
