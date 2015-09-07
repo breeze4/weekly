@@ -1,7 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
 var DayEdit = require('./day-edit');
-var DayUtil = require('../utils/day-util');
 var WeekdayPicker = require('./weekday-picker');
 var WeekHeader = require('./week-header');
 var Moment = require('moment');

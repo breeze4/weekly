@@ -6,7 +6,6 @@ var Main = require('./components/main');
 var Track = require('./components/track');
 var Progress = require('./components/progress');
 var Edit = require('./components/edit');
-var EditCurrent = require('./components/edit-current');
 
 var routes = (
     <Route name="main" path="/" handler={Main}>
