@@ -1,4 +1,5 @@
 var q = require('q');
+var Fetch = require('whatwg-fetch');
 
 window.eatingData = {
     totalCalories: 2450,
@@ -35,10 +36,22 @@ module.exports = window.api = {
     updateEating: function (newEatingData) {
         var data = q.defer();
 
-        window.eatingData = this.recalculateTotals(newEatingData);
+        var eatingData = window.eatingData = this.recalculateTotals(newEatingData);
 
-        data.resolve({
-            message: 'success'
+        var userId, year, month, day;
+
+        fetch('/api/' + userId + '/' + year + '/' + month + '/' + day, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eatingData)
+        }).then(function (response) {
+            data.resolve({
+                response: response.json(),
+                message: 'success'
+            });
         });
 
         return data.promise;

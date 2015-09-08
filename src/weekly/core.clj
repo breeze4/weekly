@@ -4,10 +4,10 @@
     [compojure.route :as route]
     [ring.middleware.file :refer [wrap-file]]
     [ring.middleware.params :refer [wrap-params]]
-    [ring.middleware.json :refer [wrap-json-response]]
+    [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
     [ring.util.response :refer [response file-response redirect]]
     [ring.middleware.reload :as reload]
-    [weekly.repository :refer [stub-data]]
+    [weekly.repository :refer [stub-data save-eating]]
     [org.httpkit.server :refer [run-server with-channel on-close on-receive send!]]
     [clojure.tools.logging :refer [info]]
     [weekly.api :as api]
@@ -34,8 +34,11 @@
 (defroutes app-routes
            (GET "/" [] (file-response "index.html" {:root "resources"}))
            (GET "/ws/:id" [id :as request] (handler request id))
-           (context "/api/:week-id" [week-id]
-             (GET "/" [week-id] (response (stub-data week-id))))
+           (context "/api/:user-id/:year/:month/:day/:activity" [user-id year month day activity]
+             (GET "/" [user-id year month day activity]
+               (response (stub-data user-id year month day activity)))
+             (POST "/" [user-id year month day activity :as request]
+               (response (save-eating user-id year month day activity (request :body)))))
            (route/not-found "<h1>Page not found</h1>"))
 
 (def app
@@ -43,6 +46,7 @@
       (wrap-request-logging)
       (wrap-params)
       (wrap-json-response)
+      (wrap-json-body)
       (wrap-file "resources")
       ))
 

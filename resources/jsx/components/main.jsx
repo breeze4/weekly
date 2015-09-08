@@ -8,7 +8,7 @@ var Main = React.createClass({
     render: function () {
         return <div>
             <Header />
-            <RouteHandler/>
+            <RouteHandler />
         </div>
     }
 });

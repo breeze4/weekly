@@ -23,17 +23,51 @@
         db (mg/get-db conn "weekly")]
     db))
 
-(defn stub-data [week-id]
-  {:id   week-id
-   :days [
-          {:name "Sunday"},
-          {:name "Monday"},
-          {:name "Tuesday"},
-          {:name "Wednesday"},
-          {:name "Thursday"},
-          {:name "Friday"},
-          {:name "Saturday"},
-          ]})
+(defn stub-data [user-id year month day activity]
+  {:id       user-id
+   :year     year
+   :month    month
+   :day      day
+   :activity activity
+   :payload  {
+              :totalCalories 2450
+              :protein       {
+                              :name     "Protein"
+                              :grams    200
+                              :calories 800
+                              }
+              :carbohydrates {
+                              :name     "Carbohydrates"
+                              :grams    300
+                              :calories 1200
+                              }
+              :fat           {
+                              :name     "Fat"
+                              :grams    50
+                              :calories 450
+                              }
+              }})
+
+(defn save-eating [user-id year month day activity data]
+  (let [db (conn)
+        collection activity]
+    (do
+      (mc/update db collection
+                 {:user_id user-id
+                  :year    year
+                  :month   month
+                  :day     day}
+                 {:user_id  user-id
+                  :year     year
+                  :month    month
+                  :day      day
+                  :activity activity
+                  :payload  data}
+                 {:upsert true})
+      (mc/find-maps db collection {:user_id user-id
+                                   :year    year
+                                   :month   month
+                                   :day     day}))))
 
 (defn save-token
   "Saves a user authentication token with an expiration set
