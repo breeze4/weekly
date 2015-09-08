@@ -1,10 +1,12 @@
 # weekly
 
-A Clojure library designed to ... well, that part is up to you.
+A weekly fitness and eating tracker built on Clojure, React and Reflux.
 
 ## Usage
 
-FIXME
+`gulp` to build the front-end project
+
+`lein run` to pull in Clojure dependencies and run the server
 
 ## License
 
