@@ -12,4 +12,6 @@ pom.xml.asc
 /weekly.iml
 /.idea
 /node_modules
+/resources/main.js
+/resources/style.css
 profiles.clj
