@@ -7,7 +7,7 @@
     [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
     [ring.util.response :refer [response file-response redirect]]
     [ring.middleware.reload :as reload]
-    [weekly.repository :refer [stub-data save-eating]]
+    [weekly.repository :refer [get-eating save-eating]]
     [org.httpkit.server :refer [run-server with-channel on-close on-receive send!]]
     [clojure.tools.logging :refer [info]]
     [weekly.api :as api]
@@ -36,7 +36,7 @@
            (GET "/ws/:id" [id :as request] (handler request id))
            (context "/api/:user-id/:year/:month/:day/:activity" [user-id year month day activity]
              (GET "/" [user-id year month day activity]
-               (response (stub-data user-id year month day activity)))
+               (response (get-eating user-id year month day activity)))
              (POST "/" [user-id year month day activity :as request]
                (response (save-eating user-id year month day activity (request :body)))))
            (route/not-found "<h1>Page not found</h1>"))

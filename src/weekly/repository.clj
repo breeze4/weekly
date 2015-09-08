@@ -48,6 +48,14 @@
                               }
               }})
 
+(defn get-eating [user-id year month day activity]
+  (let [db (conn)
+        collection activity]
+    (mc/find-maps db collection {:user_id user-id
+                                 :year    year
+                                 :month   month
+                                 :day     day})))
+
 (defn save-eating [user-id year month day activity data]
   (let [db (conn)
         collection activity]
