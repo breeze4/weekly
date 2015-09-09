@@ -5,12 +5,15 @@ var WeekdayPicker = require('./weekday-picker');
 var WeekHeader = require('./week-header');
 var Moment = require('moment');
 
+// Route Handler for edit screen
 var Edit = React.createClass({
     mixins: [Router.State, Router.Navigation],
     getInitialState: function () {
         var params = this.getParams();
         if (!params.day || !params.month || !params.year) {
             var defaultParams = this.getDateParams();
+            // route to the current date if none is specified
+            // TODO: pull further out so it doesn't need to be done in other routes too
             this.replaceWith('edit', defaultParams);
         }
         var dateStr = params.month + "-" + params.day + "-" + params.year;
@@ -38,7 +41,7 @@ var Edit = React.createClass({
         return <div>
             <div className="panel panel-default">
                 <div className="panel-heading">
-                    <h3>Editing Day: {this.state.month}-{this.state.day}-{this.state.year}</h3>
+                    <h3>Editing Day: {this.renderDate()}</h3>
                 </div>
                 <div className="panel-body">
                     <WeekHeader {...this.state}/>
@@ -46,6 +49,9 @@ var Edit = React.createClass({
                 </div>
             </div>
         </div>
+    },
+    renderDate: function () {
+        return this.state.date.format('dddd, MMMM Do YYYY');
     },
     getDateParams: function () {
         var currentDate = Moment(new Date());
